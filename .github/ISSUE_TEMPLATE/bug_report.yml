@@ -1,0 +1,57 @@
+name: 缺陷报告 / Bug report
+description: 报告录制、剪辑、导出或权限相关的问题
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        感谢报告问题。请先搜索现有 Issue，避免重复；权限类问题请先读
+        [docs/TESTING.md](../blob/main/docs/TESTING.md) 的手动验收一节。
+  - type: input
+    id: version
+    attributes:
+      label: 版本 / Version
+      description: 应用内侧栏底部或设置窗口显示的版本号（如 0.7.0）
+      placeholder: 0.7.0
+    validations:
+      required: true
+  - type: input
+    id: macos
+    attributes:
+      label: macOS 版本 / macOS version
+      placeholder: "15.x"
+    validations:
+      required: true
+  - type: input
+    id: hardware
+    attributes:
+      label: 机型 / Hardware
+      description: 例如 MacBook Pro (M1 Pro)、外接显示器型号
+  - type: textarea
+    id: steps
+    attributes:
+      label: 复现步骤 / Steps to reproduce
+      placeholder: |
+        1. 选择来源…
+        2. 开始录制…
+        3. 停止后…
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: 期望行为 / Expected
+    validations:
+      required: true
+  - type: textarea
+    id: actual
+    attributes:
+      label: 实际行为 / Actual
+      description: 如有控制台日志（Console.app 过滤 com.localstudio.recorder）请一并粘贴
+    validations:
+      required: true
+  - type: textarea
+    id: extra
+    attributes:
+      label: 补充信息 / Additional context
+      description: 截图或录屏（注意先移除画面中的个人信息）

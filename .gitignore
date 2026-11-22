@@ -1,0 +1,6 @@
+.build/
+八角录屏.app/
+work/
+.DS_Store
+dist/
+out/

@@ -1,0 +1,40 @@
+# 八角录屏 (anise-recorder)
+
+> Local-first macOS screen recorder & demo editor. 录屏、剪辑、导出全部在
+> 本机完成：无账号、无上传、无遥测、零第三方运行时依赖。
+
+八角录屏 (anise-recorder) 是一个原生 macOS 应用，使用 SwiftUI 与
+ScreenCaptureKit 构建。它把屏幕、系统声音、麦克风和摄像头**分别**录制为
+独立文件，再在五轨时间线上完成剪辑（点击放大、摄像头构图、智能精剪、
+字幕、打码、素材叠加），最后导出 MP4 / GIF / SRT。工程数据只保存在
+`~/Movies/八角录屏/`。
+
+## Key facts / 关键事实
+
+- Platform: macOS 15+ (Apple Silicon), SwiftUI + ScreenCaptureKit + AVFoundation
+- Language: Swift 6 toolchain, SwiftPM only (no .xcodeproj, no third-party packages)
+- Build: `swift build` · Test: `swift test` (long-export suite gated by env `ANISE_RECORDER_LONG_EXPORT=1`)
+- Package app: `./scripts/build_app.sh` → `八角录屏.app`
+- Data: projects in `~/Movies/八角录屏/`, schemaVersion 5, `project.json` per project
+- Privacy: zero network code; on-device speech recognition only
+  (`requiresOnDeviceRecognition = true`); fails explicitly instead of cloud fallback
+- Coordinates: normalized capture/click/camera regions use top-left origin,
+  y-down; AppKit & Core Image are bottom-left, y-up — see Architecture doc
+- Compatibility identifiers kept intentionally (bundle id `com.localstudio.recorder`,
+  legacy folder "Local Studio", `.localstudio-hidden` marker, `LocalStudio.*`
+  UserDefaults keys) — do not rename them; they are annotated in code
+- License: Apache-2.0 · Language of UI & docs: Simplified Chinese (+ English README)
+
+## Docs / 文档
+
+- [README](README.md): product overview, screenshots, install, quick start
+- [Features & boundaries](docs/FEATURES.md): complete feature list and current limits (中文)
+- [Architecture](docs/ARCHITECTURE.md): modules, capture/compose pipeline, data formats, coordinate systems
+- [Development](docs/DEVELOPMENT.md): environment, build, signing, permissions, release pipeline
+- [Testing & acceptance](docs/TESTING.md): test coverage, how to pick tests, manual acceptance checklist
+- [Roadmap](docs/ROADMAP.md): directional plans and known limitations
+- [Design system](docs/design/DESIGN_SYSTEM.md): 「图谱蓝线描」design tokens, component states, UI checklist
+- [Contributing](CONTRIBUTING.md): dev loop, code conventions, PR checklist
+- [Privacy](PRIVACY.md): what data is accessed, where it is stored, deletion
+- [Changelog](CHANGELOG.md): user-visible changes per version
+- [Agent instructions](AGENTS.md): working principles, commands, invariants, doc-sync rules
